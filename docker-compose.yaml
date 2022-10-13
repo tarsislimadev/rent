@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+
+  front:
+    build: './src/front'
+    depends_on:
+      - 'back'
+    ports:
+      - '80:80'
+
+  back:
+    build: './src/back'
