@@ -3,11 +3,13 @@ version: '3'
 services:
 
   front:
+    image: imobiliario:front
     build: './src/front'
     depends_on:
       - 'back'
     ports:
-      - '80:80'
+      - '80:3000'
 
   back:
+    image: imobiliario:back
     build: './src/back'
