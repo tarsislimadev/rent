@@ -4,7 +4,7 @@ services:
 
   front:
     image: imobiliario:front
-    build: './src/front'
+    build: './front'
     depends_on:
       - 'back'
     ports:
@@ -12,4 +12,4 @@ services:
 
   back:
     image: imobiliario:back
-    build: './src/back'
+    build: './back'
