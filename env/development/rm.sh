@@ -4,4 +4,6 @@ sudo rm -rf ./data
 
 sudo rm -rf ./logs
 
-sudo rm -rf ./src
+sudo rm -rf ./src/front/*
+
+sudo rm -rf ./src/back/*
