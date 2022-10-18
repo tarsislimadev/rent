@@ -4,8 +4,8 @@ services:
 
   front:
     image: imobiliario:front
-    build: './front'
+    build: './src/front'
     volumes:
-      - './front:/app'
+      - './src/front:/app'
     ports:
       - '80:3000'
