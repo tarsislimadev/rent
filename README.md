@@ -1,24 +1,24 @@
 # Imobiliario
 
-Prestadores de serviços para imoveis (hidraulica, eletrica, frete, etc...)
+Prestadores de serviços para imoveis (hidraulica, eletrica, frete, mecanico, etc...)
 
 ## Sobre o projeto
 
-### Prestadores de serviços
+### Para clientes
+
+- [ ] Cadastro (login/registro)
+- [ ] Contrato
+
+### Para prestadores de serviços
 
 Cadastre-se no site e anuncie seus serviços.
 
 - [ ] Cadastro (login/registro)
 - [ ] Anúncio (CRUD)
 
-### Contratantes
+## Como configurar o projeto (off-line)
 
-- [ ] Cadastro (login/registro)
-- [ ] Contrato
-
-## Como usar o projeto (off-line)
-
-Instalar [Docker (+ docker compose)](https://www.docker.com/)
+Instalar [Docker (+ Docker Compose)](https://www.docker.com/)
 
 Executar:
 
@@ -28,7 +28,7 @@ bash ./env/development/up.sh
 
 Acessar `http://localhost`
 
-## Como usar o projeto (Docker)
+## Como configurar o projeto (Docker)
 
 Instalar [Docker](https://www.docker.com/)
 
