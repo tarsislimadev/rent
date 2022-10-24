@@ -2,7 +2,6 @@
 /old
 
 # dependencies
-/src
 /node_modules
 /.pnp
 .pnp.js
