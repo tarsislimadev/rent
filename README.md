@@ -20,10 +20,16 @@ Cadastre-se no site e anuncie seus serviços.
 
 Instalar [Docker (+ Docker Compose)](https://www.docker.com/)
 
-Executar:
+Para baixar os modulos:
 
 ```sh
-bash ./env/development/up.sh 
+bash env/pull.sh 
+```
+
+Para executar:
+
+```sh
+bash env/up.sh 
 ```
 
 Acessar `http://localhost`
