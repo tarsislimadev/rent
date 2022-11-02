@@ -3,7 +3,7 @@ version: '3'
 services:
 
   front:
-    image: imobiliario:front
+    image: imobiliario
     build: './src/front'
     volumes:
       - './src/front:/app'
