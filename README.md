@@ -1,6 +1,6 @@
 # Imobiliario
 
-Prestadores de serviços para imoveis (hidraulica, eletrica, frete, mecanico, etc...)
+Para prestadores de serviços domesticos (hidraulica, eletrica, frete, mecanico, etc...).
 
 ## Sobre o projeto
 
