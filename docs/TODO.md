@@ -1,1 +1,3 @@
-[ ] ./env/development/push.sh - implement
+- [ ] Index - search and main lists
+- [ ] Search - order, filter and pagination of lists
+- [ ] Content - item details
