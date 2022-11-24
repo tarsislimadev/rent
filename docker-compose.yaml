@@ -9,3 +9,27 @@ services:
       - './src/front:/app'
     ports:
       - '80:3000'
+  
+  api:
+    image: imobiliario:api
+    hostname: api
+    build: './src/api'
+    restart: always
+    ports:
+      - '8080:80'
+    volumes:
+      - './src/api:/app'
+      - './src/commons:/commons'
+      - './data:/data'
+    depends_on:
+      - 'ads_list'
+  
+  ads_list:
+    image: imobiliario:ads_list
+    hostname: ads_list
+    build: './src/back/ads-list'
+    restart: always
+    volumes:
+      - './src/back/ads-list:/app'
+      - './src/commons:/commons'
+      - './data:/data'
