@@ -1,14 +1,12 @@
 name: AWS Lightsail
 
 on:
-  workflow_dispatch:
   push:
     branches: 
       - 'main'
 
 jobs:
   aws:
-    using: docker
     runs-on: ubuntu-latest
     steps:
 
