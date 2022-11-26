@@ -8,12 +8,13 @@ on:
 
 jobs:
   aws:
+    using: docker
     runs-on: ubuntu-latest
     steps:
 
       - name: Check out repository code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - using: docker
+      - name: Run Dockerfile
         image: Dockerfile
 
