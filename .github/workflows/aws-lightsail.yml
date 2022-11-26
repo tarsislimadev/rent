@@ -11,19 +11,14 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
 
-      - name: Install JQ
-        env:
-          # AWS_REGION: us-east-1
-          # AWS_ZONE: us-east-1a
-          # INSTANCE_NAME: instance-${{ github.run_id }}
-          KEY_PAIR_NAME: key-pair-${{ github.run_id }} 
-        run: sudo apt install -y jq
-
       - name: Create key pair in Lightsail 
-        env:
-          KEY_PAIR_NAME: key-pair-${{ github.run_id }} 
-        run: aws lightsail create-key-pair --key-pair-name $KEY_PAIR_NAME | jq ".privateKeyBase64" > ./key-pair.pem
+        run: aws lightsail create-key-pair --key-pair-name key-pair-${{ github.run_id }}
 
-      - name: List files 
-        run: ls -la
+      - name: List key pairs in Lightsail 
+        run: aws lightsail get-key-pairs
 
+      - name: Get key pair in Lightsail 
+        run: aws lightsail get-key-pair --key-pair-name key-pair-${{ github.run_id }}
+
+      - name: Delete key pair in Lightsail 
+        run: aws lightsail delete-key-pair --key-pair-name key-pair-${{ github.run_id }}
