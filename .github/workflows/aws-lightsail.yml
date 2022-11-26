@@ -12,13 +12,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Create key pair in Lightsail 
-        run: aws lightsail create-key-pair --key-pair-name key-pair-${{ github.run_id }}
+        run: sh ./aws.sh lightsail create-key-pair --key-pair-name key-pair-${{ github.run_id }}
 
       - name: List key pairs in Lightsail 
-        run: aws lightsail get-key-pairs
+        run: sh ./aws.sh lightsail get-key-pairs
 
       - name: Get key pair in Lightsail 
-        run: aws lightsail get-key-pair --key-pair-name key-pair-${{ github.run_id }}
+        run: sh ./aws.sh lightsail get-key-pair --key-pair-name key-pair-${{ github.run_id }}
 
       - name: Delete key pair in Lightsail 
-        run: aws lightsail delete-key-pair --key-pair-name key-pair-${{ github.run_id }}
+        run: sh ./aws.sh lightsail delete-key-pair --key-pair-name key-pair-${{ github.run_id }}
