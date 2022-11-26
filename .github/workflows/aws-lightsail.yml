@@ -17,7 +17,7 @@ jobs:
           # AWS_ZONE: us-east-1a
           # INSTANCE_NAME: instance-${{ github.run_id }}
           KEY_PAIR_NAME: key-pair-${{ github.run_id }} 
-        run: apt install -y jq
+        run: sudo apt install -y jq
 
       - name: Create key pair in Lightsail 
         env:
