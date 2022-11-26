@@ -11,6 +11,9 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
 
+      - name: Download AWS CLI  
+        run: docker pull amazon/aws-cli
+
       - name: Create key pair in Lightsail 
         run: sh ./aws.sh lightsail create-key-pair --key-pair-name key-pair-${{ github.run_id }}
 
