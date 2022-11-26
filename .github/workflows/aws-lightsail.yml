@@ -23,3 +23,7 @@ jobs:
         env:
           KEY_PAIR_NAME: key-pair-${{ github.run_id }} 
         run: aws lightsail create-key-pair --key-pair-name $KEY_PAIR_NAME | jq ".privateKeyBase64" > ./key-pair.pem
+
+      - name: List files 
+        run: ls -la
+
