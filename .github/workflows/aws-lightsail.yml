@@ -1,6 +1,7 @@
 name: AWS Lightsail
 
 on:
+  workflow_dispatch:
   push:
     branches: 
       - 'main'
@@ -15,3 +16,4 @@ jobs:
 
       - name: Getting key pairs in AWS Lightsail
         uses: ./aws.sh lightsail get-key-pairs
+
