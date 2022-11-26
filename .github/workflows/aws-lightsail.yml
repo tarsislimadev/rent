@@ -14,22 +14,6 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
 
-      - name: Download AWS CLI  
-        run: docker pull amazon/aws-cli
-
-      - name: Create key pair in Lightsail 
-        run: sh ./aws.sh lightsail create-key-pair --key-pair-name key-pair-20221126
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secret.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secret.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secret.AWS_DEFAULT_REGION }}
-
-      - name: List key pairs in Lightsail 
-        run: sh ./aws.sh lightsail get-key-pairs
-
-      - name: Get key pair in Lightsail 
-        run: sh ./aws.sh lightsail get-key-pair --key-pair-name key-pair-20221126
-
-      - name: Delete key pair in Lightsail 
-        run: sh ./aws.sh lightsail delete-key-pair --key-pair-name key-pair-20221126
+      - using: docker
+        image: Dockerfile
 
