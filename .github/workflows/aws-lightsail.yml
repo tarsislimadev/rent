@@ -2,6 +2,9 @@ name: AWS Lightsail
 
 on:
   workflow_dispatch:
+  push:
+    branches: 
+      - 'main'
 
 jobs:
   aws:
@@ -25,3 +28,4 @@ jobs:
 
       - name: Delete key pair in Lightsail 
         run: sh ./aws.sh lightsail delete-key-pair --key-pair-name key-pair-${{ github.run_id }}
+
