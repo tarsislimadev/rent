@@ -15,5 +15,5 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Getting key pairs in AWS Lightsail
-        runs: bash ./aws.sh lightsail get-key-pairs
+        run: bash ./aws.sh lightsail get-key-pairs
 
