@@ -1,1 +1,1 @@
-docker-compose -f ./docker-compose.yaml run front npm ci
+docker-compose -f ./docker-compose.yaml run www npm ci
