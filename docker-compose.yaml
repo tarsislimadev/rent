@@ -2,11 +2,11 @@ version: '3'
 
 services:
 
-  front:
+  www:
     image: imobiliario
-    build: './src/front'
+    build: './src/www'
     volumes:
-      - './src/front:/app'
+      - './src/www:/app'
     ports:
       - '80:3000'
   
@@ -19,17 +19,15 @@ services:
       - '8080:80'
     volumes:
       - './src/api:/app'
-      - './src/commons:/commons'
-      - './data:/data'
     depends_on:
-      - 'ads_list'
+      - 'adslist'
   
-  ads_list:
-    image: imobiliario:ads_list
-    hostname: ads_list
-    build: './src/back/ads-list'
+  adslist:
+    image: imobiliario:adslist
+    hostname: adslist
+    build: './src/adslist'
     restart: always
     volumes:
-      - './src/back/ads-list:/app'
-      - './src/commons:/commons'
+      - './src/adslist:/app'
+      - './src/main:/main'
       - './data:/data'
