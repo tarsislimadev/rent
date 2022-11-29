@@ -9,28 +9,10 @@ on:
 jobs:
   aws:
     runs-on: ubuntu-latest
-    outputs:
-      keypairname: keypairname-$( date +'%Y%m%d%H%M%S' )
     steps:
-
-      - name: Dump GitHub context
-        id: github_context_step
-        run: echo '${{ toJSON(github) }}'
-
-      - name: Dump job context
-        run: echo '${{ toJSON(job) }}'
-
-      - name: Dump steps context
-        run: echo '${{ toJSON(steps) }}'
-
-      - name: Dump runner context
-        run: echo '${{ toJSON(runner) }}'
-
-      - name: Dump strategy context
-        run: echo '${{ toJSON(strategy) }}'
-
-      - name: Dump matrix context
-        run: echo '${{ toJSON(matrix) }}'
+      - name: Date time
+        id: datetime
+        run: echo "datetime=$(( date +'%Y%m%d%H%M%S' ))" >> $GITHUB_OUTPUT
 
       - name: Check out repository code
         uses: actions/checkout@v2
@@ -43,13 +25,13 @@ jobs:
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
       - name: Creating a key pair in AWS Lightsail
-        run: aws lightsail create-key-pair --key-pair-name ${{ outputs.keypairname }} 
+        run: aws lightsail create-key-pair --key-pair-name ${{ steps.datetime.outputs.datetime }} 
 
       - name: Listing key pairs in AWS Lightsail
         run: aws lightsail get-key-pairs
 
       - name: Getting key pairs in AWS Lightsail
-        run: aws lightsail get-key-pair --key-pair-name ${{ outputs.keypairname }} 
+        run: aws lightsail get-key-pair --key-pair-name ${{ steps.datetime.outputs.datetime }} 
 
       - name: Deleting a key pair in AWS Lightsail
-        run: aws lightsail delete-key-pair --key-pair-name ${{ outputs.keypairname }} 
+        run: aws lightsail delete-key-pair --key-pair-name ${{ steps.datetime.outputs.datetime }} 
