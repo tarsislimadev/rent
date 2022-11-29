@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Configuration
         id: configuration
-        run: echo "keypairname=$( date +%Y%m%d%H%M%S )" >> $GITHUB_OUTPUT
+        run: echo "keypairname=keypair-$( date +%Y%m%d%H%M%S )" >> $GITHUB_OUTPUT
 
       - name: Check out repository code
         uses: actions/checkout@v2
