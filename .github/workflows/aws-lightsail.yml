@@ -25,5 +25,5 @@ jobs:
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
       - name: Create instances in AWS Lightsail
-        run: aws lightsail create-instances --instance-names ${{ steps.configuration.outputs.keypairname }} --availability-zone ${{ secrets.AWS_DEFAULT_REGION }}a
+        run: aws lightsail create-instances --instance-names ${{ steps.configuration.outputs.keypairname }} --availability-zone ${{ secrets.AWS_DEFAULT_REGION }}a --blueprint-id "ubuntu_20_04" --bundle-id "micro_1_0"
 
