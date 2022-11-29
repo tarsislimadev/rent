@@ -43,5 +43,11 @@ jobs:
         run: sleep 60
 
       - name: List file in instance
-        run: echo yes | ssh -i key-pair.pem ubuntu@${{ steps.public_ip.outputs.public_ip }} ls -la
+        run: ssh -i key-pair.pem ubuntu@${{ steps.public_ip.outputs.public_ip }} ls -la
+
+      # - name: List file in instance
+      #   run: scp -r -i key-pair.pem ubuntu@${{ steps.public_ip.outputs.public_ip }}:/home/ubuntu/app .
+
+      - name: Install Docker Compose and Git
+        run: ssh -i key-pair.pem ubuntu@${{ steps.public_ip.outputs.public_ip }} "sudo apt update -y && sudo apt install -y docker-compose git"
 
