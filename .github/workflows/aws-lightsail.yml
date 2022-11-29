@@ -6,7 +6,7 @@ on:
     inputs:
       keypairname:
         required: true
-        default: keypairname-${{ date +%Y%m%d%H%M%S }}
+        default: keypairname-$( date +%Y%m%d%H%M%S )
   push:
     branches: 
       - 'main'
