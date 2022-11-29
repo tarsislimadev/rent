@@ -10,10 +10,10 @@ jobs:
 
   aws:
     runs-on: ubuntu-latest
-    inputs:
+    outputs:
       keypairname:
-        required: true
-        default: keypairname-$( date +'%Y%m%d%H%M%S' )
+        description: "Name of key pair"
+        value: keypairname-$( date +'%Y%m%d%H%M%S' )
     steps:
 
       - name: Check out repository code
