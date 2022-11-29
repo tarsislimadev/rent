@@ -24,6 +24,9 @@ jobs:
       - name: Create instances in AWS Lightsail
         run: aws lightsail create-instances --instance-names ${{ steps.instance.outputs.instancename }} --availability-zone ${{ secrets.AWS_DEFAULT_REGION }}a --blueprint-id "ubuntu_20_04" --bundle-id "micro_1_0"
 
+      - name: Sleep 60 seconds
+        run: sleep 60
+
       - name: Get instance address by AWS Lightsail
         id: public_ip
         run: echo "public_ip=$( aws lightsail get-instance --instance-name ${{ steps.instance.outputs.instancename }} | jq ".instance.publicIpAddress" | sed -e 's/"//ig' )" >> $GITHUB_OUTPUT
@@ -32,9 +35,6 @@ jobs:
         run: |
           echo $( aws lightsail download-default-key-pair | jq ".privateKeyBase64" | sed -e 's/"//ig' ) | sed -e 's/\\n/\n/ig' >> key-pair.pem
           sudo chmod 400 key-pair.pem
-
-      - name: Sleep 60 seconds
-        run: sleep 60
 
       - name: Authorize instance address
         run: mkdir -p ~/.ssh/ && ssh-keyscan -t rsa ${{ steps.public_ip.outputs.public_ip }} >> ~/.ssh/known_hosts
