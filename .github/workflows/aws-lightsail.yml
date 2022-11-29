@@ -27,3 +27,15 @@ jobs:
       - name: Create instances in AWS Lightsail
         run: aws lightsail create-instances --instance-names ${{ steps.instance.outputs.instancename }} --availability-zone ${{ secrets.AWS_DEFAULT_REGION }}a --blueprint-id "ubuntu_20_04" --bundle-id "micro_1_0"
 
+      - name: Get instance address by AWS Lightsail
+        id: public_ip
+        run: echo "public_ip=$( aws lightsail get-instance --instance-name ${{ steps.instance.outputs.instancename }} | jq ".instance.publicIpAddress" | sed -e 's/"//ig' )" >> $GITHUB_OUTPUT
+
+      - name: Set instance private key
+        run: |
+          echo $( aws lightsail download-default-key-pair | jq ".privateKeyBase64" | sed -e 's/"//ig' ) | sed -e 's/\\n/\n/ig' >> key-pair.pem
+          sudo chmod 400 key-pair.pem
+
+      - name: List file in instance
+        run: ssh -i key-pair.pem ubuntu@${{ steps.public_ip.outputs.public_ip }}
+
