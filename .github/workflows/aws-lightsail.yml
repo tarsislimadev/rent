@@ -5,18 +5,13 @@ on:
   push:
     branches: 
       - 'main'
-  workflow_call:
-    outputs:
-      keypairname:
-        description: "Name of key pair"
-        value: keypairname-$( date +'%Y%m%d%H%M%S' )
 
 jobs:
 
   aws:
     runs-on: ubuntu-latest
     outputs:
-      keypairname: ${{ on.workflow_call.outputs.firstword.value	 }}
+      keypairname: keypairname-$( date +'%Y%m%d%H%M%S' )
     steps:
 
       - name: Check out repository code
