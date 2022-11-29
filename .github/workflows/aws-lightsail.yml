@@ -42,12 +42,10 @@ jobs:
       - name: Sleep 60sec
         run: sleep 60
 
+      - name: Authorize instance address
+        run: ssh-keyscan -t rsa ${{ steps.public_ip.outputs.public_ip }} >> ~/.ssh/known_hosts
+
       - name: List file in instance
         run: ssh -i key-pair.pem ubuntu@${{ steps.public_ip.outputs.public_ip }} ls -la
         timeout-minutes: 5
 
-      # - name: List file in instance
-      #   run: scp -r -i key-pair.pem ubuntu@${{ steps.public_ip.outputs.public_ip }}:/home/ubuntu/app .
-
-      - name: Install Docker Compose and Git
-        run: ssh -i key-pair.pem ubuntu@${{ steps.public_ip.outputs.public_ip }} "sudo apt update -y && sudo apt install -y docker-compose git"
