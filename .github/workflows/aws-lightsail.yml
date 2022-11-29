@@ -10,9 +10,9 @@ jobs:
   aws:
     runs-on: ubuntu-latest
     steps:
-      - name: Date time
-        id: datetime
-        run: echo "datetime=$( date +%Y%m%d%H%M%S )" >> $GITHUB_OUTPUT
+      - name: Configuration
+        id: configuration
+        run: echo "keypairname=$( date +%Y%m%d%H%M%S )" >> $GITHUB_OUTPUT
 
       - name: Check out repository code
         uses: actions/checkout@v2
@@ -25,13 +25,13 @@ jobs:
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
       - name: Creating a key pair in AWS Lightsail
-        run: aws lightsail create-key-pair --key-pair-name ${{ steps.datetime.outputs.datetime }} 
+        run: aws lightsail create-key-pair --key-pair-name ${{ steps.configuration.outputs.keypairname }} 
 
       - name: Listing key pairs in AWS Lightsail
         run: aws lightsail get-key-pairs
 
       - name: Getting key pairs in AWS Lightsail
-        run: aws lightsail get-key-pair --key-pair-name ${{ steps.datetime.outputs.datetime }} 
+        run: aws lightsail get-key-pair --key-pair-name ${{ steps.configuration.outputs.keypairname }} 
 
       - name: Deleting a key pair in AWS Lightsail
-        run: aws lightsail delete-key-pair --key-pair-name ${{ steps.datetime.outputs.datetime }} 
+        run: aws lightsail delete-key-pair --key-pair-name ${{ steps.configuration.outputs.keypairname }} 
