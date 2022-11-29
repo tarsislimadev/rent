@@ -42,10 +42,10 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
 
-      - name: Updating instance in AWS Lightsail
+      - name: APT install in AWS Lightsail
         run: ssh -i key-pair.pem ubuntu@${{ steps.public_ip.outputs.public_ip }} sudo apt update -y
 
-      - name: Installing Docker Compose in AWS Lightsail instance
+      - name: Install Docker Compose in AWS Lightsail
         run: ssh -i key-pair.pem ubuntu@${{ steps.public_ip.outputs.public_ip }} sudo apt install -y docker-compose git
 
       - name: Upload the code
