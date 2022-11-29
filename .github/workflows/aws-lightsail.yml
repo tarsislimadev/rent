@@ -49,7 +49,7 @@ jobs:
             sudo apt install -y docker-compose git
 
       - name: Upload the code
-        run: scp -r -i key-pair.pem ubuntu@${{ steps.public_ip.outputs.public_ip }}:/home/ubuntu/app/ $GITHUB_WORKSPACE
+        run: scp -r -i key-pair.pem $GITHUB_WORKSPACE ubuntu@${{ steps.public_ip.outputs.public_ip }}:/home/ubuntu/app/
 
       - name: Run the project
         run: ssh -i key-pair.pem ubuntu@${{ steps.public_ip.outputs.public_ip }}:/home/ubuntu/app/ docker-compose up
