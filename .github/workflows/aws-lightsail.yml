@@ -8,6 +8,9 @@ on:
 
 jobs:
   aws:
+    inputs:
+      keypairname:
+        default: keypairname-${{ date +%Y%m%d%H%M%S }}
     runs-on: ubuntu-latest
     steps:
 
@@ -22,14 +25,13 @@ jobs:
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
       - name: Creating a key pair in AWS Lightsail
-        run: aws lightsail create-key-pair --key-pair-name keypairname 
+        run: aws lightsail create-key-pair --key-pair-name ${{ inputs.keypairname }} 
 
       - name: Listing key pairs in AWS Lightsail
         run: aws lightsail get-key-pairs
 
       - name: Getting key pairs in AWS Lightsail
-        run: aws lightsail get-key-pair --key-pair-name keypairname 
+        run: aws lightsail get-key-pair --key-pair-name ${{ inputs.keypairname }} 
 
       - name: Deleting a key pair in AWS Lightsail
-        run: aws lightsail delete-key-pair --key-pair-name keypairname 
-
+        run: aws lightsail delete-key-pair --key-pair-name ${{ inputs.keypairname }} 
