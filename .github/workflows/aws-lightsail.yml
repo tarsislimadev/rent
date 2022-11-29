@@ -2,18 +2,18 @@ name: AWS Lightsail
 
 on:
   workflow_dispatch:
-  workflow_call:
-    inputs:
-      keypairname:
-        required: true
-        default: keypairname-$( date +'%Y%m%d%H%M%S' )
   push:
     branches: 
       - 'main'
 
 jobs:
+
   aws:
     runs-on: ubuntu-latest
+    inputs:
+      keypairname:
+        required: true
+        default: keypairname-$( date +'%Y%m%d%H%M%S' )
     steps:
 
       - name: Check out repository code
