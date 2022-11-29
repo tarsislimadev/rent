@@ -43,5 +43,5 @@ jobs:
         run: sleep 60
 
       - name: List file in instance
-        run: ssh -i key-pair.pem ubuntu@${{ steps.public_ip.outputs.public_ip }} ls -la
+        run: echo yes | ssh -i key-pair.pem ubuntu@${{ steps.public_ip.outputs.public_ip }} ls -la
 
