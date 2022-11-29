@@ -10,7 +10,7 @@ jobs:
   aws:
     runs-on: ubuntu-latest
     steps:
-      - name: Instance name
+      - name: Set instance name
         id: instance
         run: echo "instancename=instance-$( date +%Y%m%d%H%M%S )" >> $GITHUB_OUTPUT
 
@@ -39,23 +39,21 @@ jobs:
       - name: Authorize instance address
         run: mkdir -p ~/.ssh/ && ssh-keyscan -t rsa ${{ steps.public_ip.outputs.public_ip }} >> ~/.ssh/known_hosts
 
-      - name: Updating APT in AWS Lightsail
-        run: ssh -i key-pair.pem ubuntu@${{ steps.public_ip.outputs.public_ip }} sudo apt update -y
-
       - name: Install Docker Compose in AWS Lightsail
-        run: ssh -i key-pair.pem ubuntu@${{ steps.public_ip.outputs.public_ip }} sudo apt install -y docker-compose git
+        run: ssh -i key-pair.pem ubuntu@${{ steps.public_ip.outputs.public_ip }} "sudo apt update -y && sudo apt install -y docker-compose git"
 
-      # - name: Check out repository code
-      #   uses: actions/checkout@v2
+      - name: Check out repository code
+        uses: actions/checkout@v2
 
       # - name: Upload the code to AWS Lightsail
       #   run: scp -r -i key-pair.pem $GITHUB_WORKSPACE ubuntu@${{ steps.public_ip.outputs.public_ip }}:/home/ubuntu/app/
 
-      # - name: Pulling the project in AWS Lightsail
+      # - name: Pull the project in AWS Lightsail
       #   run: ssh -i key-pair.pem ubuntu@${{ steps.public_ip.outputs.public_ip }} "bash -c 'PATH=/home/ubuntu/app/ bash env/pull.sh'"
 
-      # - name: Installing the project in AWS Lightsail
+      # - name: Install the project in AWS Lightsail
       #   run: ssh -i key-pair.pem ubuntu@${{ steps.public_ip.outputs.public_ip }} "bash -c 'PATH=/home/ubuntu/app/ bash env/install.sh'"
 
-      # - name: Running the project in AWS Lightsail
+      # - name: Run the project in AWS Lightsail
       #   run: ssh -i key-pair.pem ubuntu@${{ steps.public_ip.outputs.public_ip }} "bash -c 'PATH=/home/ubuntu/app/ bash env/up.sh'"
+
