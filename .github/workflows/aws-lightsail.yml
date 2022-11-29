@@ -5,15 +5,18 @@ on:
   push:
     branches: 
       - 'main'
+  workflow_call:
+    outputs:
+      keypairname:
+        description: "Name of key pair"
+        value: keypairname-$( date +'%Y%m%d%H%M%S' )
 
 jobs:
 
   aws:
     runs-on: ubuntu-latest
     outputs:
-      keypairname:
-        description: "Name of key pair"
-        value: keypairname-$( date +'%Y%m%d%H%M%S' )
+      keypairname: ${{ on.workflow_call.outputs.firstword.value	 }}
     steps:
 
       - name: Check out repository code
@@ -27,13 +30,13 @@ jobs:
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
       - name: Creating a key pair in AWS Lightsail
-        run: aws lightsail create-key-pair --key-pair-name ${{ inputs.keypairname }} 
+        run: aws lightsail create-key-pair --key-pair-name ${{ outputs.keypairname }} 
 
       - name: Listing key pairs in AWS Lightsail
         run: aws lightsail get-key-pairs
 
       - name: Getting key pairs in AWS Lightsail
-        run: aws lightsail get-key-pair --key-pair-name ${{ inputs.keypairname }} 
+        run: aws lightsail get-key-pair --key-pair-name ${{ outputs.keypairname }} 
 
       - name: Deleting a key pair in AWS Lightsail
-        run: aws lightsail delete-key-pair --key-pair-name ${{ inputs.keypairname }} 
+        run: aws lightsail delete-key-pair --key-pair-name ${{ outputs.keypairname }} 
