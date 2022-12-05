@@ -23,13 +23,19 @@ Instalar [Docker (+ Docker Compose)](https://www.docker.com/)
 Para baixar os modulos:
 
 ```sh
-bash env/pull.sh 
+bash env/pull.sh
+```
+
+Para instalar os modulos:
+
+```sh
+bash env/install.sh
 ```
 
 Para executar:
 
 ```sh
-bash env/up.sh 
+bash env/up.sh
 ```
 
 Acessar `http://localhost`
