@@ -47,7 +47,7 @@ Instalar [Docker](https://www.docker.com/)
 Executar:
 
 ```sh
-docker run --rm -p 80:80 tmvdl/challenges:imobiliario
+docker run --rm -p 80:80 tmvdl/projects:imobiliario
 ```
 
 ## License

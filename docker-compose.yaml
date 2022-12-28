@@ -3,7 +3,7 @@ version: '3'
 services:
 
   www:
-    image: imobiliario
+    image: tmvdl/projects:imobiliario
     build: './src/www'
     volumes:
       - './src/www:/app'
